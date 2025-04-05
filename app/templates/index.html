@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/layout.css') }}">
+    <title>Index</title>
+</head>
+
+<body>
+    <h1>MENU DE ACCIONES GPT IA 5</h1>
+    <div class="container">
+        <div class="item" id="traductorButton">
+            <img class="img_url_button" src="{{ url_for('static', filename='images/rb_Traductor.png') }}" alt="" srcset="">
+            <label for="" class="descripcion">
+                Lorem ipsum dolor sit amet consectetur adipisicing elit. Debitis distinctio unde vel reiciendis aliquam non 
+                commodi magni delectus nesciunt, temporibus eligendi ratione placeat vero animi repellendus id fugiat ipsa dolore!
+            </label>
+        </div>
+        <div class="item" id="resumenButton">
+            <img class="img_url_button" src="{{ url_for('static', filename='images/rb_Resumen.png') }}" alt="" srcset="">
+            <label for="" class="descripcion">
+                Lorem ipsum dolor sit amet consectetur adipisicing elit. Debitis distinctio unde vel reiciendis aliquam non 
+                commodi magni delectus nesciunt, temporibus eligendi ratione placeat vero animi repellendus id fugiat ipsa dolore!
+            </label>
+        </div>
+        <div class="item" id="preguntaButton">
+            <img class="img_url_button" src="{{ url_for('static', filename='images/rb_Pregunta.png') }}" alt="" srcset="">
+            <label for="" class="descripcion">
+                Lorem ipsum dolor sit amet consectetur adipisicing elit. Debitis distinctio unde vel reiciendis aliquam non 
+                commodi magni delectus nesciunt, temporibus eligendi ratione placeat vero animi repellendus id fugiat ipsa dolore!
+            </label>
+        </div>
+        <div class="item" id="generar_preguntaButton">
+            <img class="img_url_button" src="{{ url_for('static', filename='images/rb_Generar.png') }}" alt="" srcset="">
+            <p for="" class="descripcion">
+                Lorem ipsum dolor sit amet consectetur adipisicing elit. Debitis distinctio unde vel reiciendis aliquam non 
+                commodi magni delectus nesciunt, temporibus eligendi ratione placeat vero animi repellendus id fugiat ipsa dolore!
+            </p>
+        </div>
+    </div>
+
+
+    <script>
+        document.getElementById('traductorButton').addEventListener('click', () => {
+            fetch("{{ url_for('generar_traduccion') }}")
+            .then(response => {
+                if (response.ok) {
+                    window.location.href = response.url;
+                } else {
+                    console.error("Error al cargar la pagina.");
+                }
+            })
+            .catch(error => console.error("Error en la solicitud: ", error));
+        });
+
+        document.getElementById('resumenButton').addEventListener('click', () => {
+            fetch("{{ url_for('generar_resumen') }}")
+            .then(responseUno => {
+                if (responseUno.ok) {
+                    window.location.href = responseUno.url;
+                } else {
+                    console.error("Error al cargar la pagina.");
+                }
+            })
+            .catch(error => console.error("Error en la solicitud: ", error));
+        });
+
+        document.getElementById('preguntaButton').addEventListener('click', () => {
+            fetch("{{ url_for('resolver_pregunta') }}")
+            .then(responsetwo => {
+                if (responsetwo.ok) {
+                    window.location.href = responsetwo.url;
+                } else {
+                    console.error("Error al cargar la pagina.");
+                }
+            })
+            .catch(error => console.error("Error en la solicitud: ", error));
+        });
+
+        document.getElementById('generar_preguntaButton').addEventListener('click', () => {
+            fetch("{{ url_for('generate_question') }}")
+            .then(responseThree => {
+                if (responseThree.ok) {
+                    window.location.href = responseThree.url;
+                } else {
+                    console.error("Error al cargar la pagina.");
+                }
+            })
+            .catch(error => console.error("Error en la solicitud: ", error));
+        })
+    </script>
+
+</body>
+
+</html>
