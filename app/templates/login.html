@@ -95,7 +95,7 @@
                     if(response.ok){
                         window.location.href = response.url;
                     } else {
-                        onsole.error("Error al cargar la pagina.");
+                        console.error("Error al cargar la pagina.");
                     }
                 })
                 .catch(error => console.error("Error en la solicitud: ", error));
