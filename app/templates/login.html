@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="es">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -14,6 +15,7 @@
             background: linear-gradient(135deg, #1e1e2f, #3a3d98);
             color: white;
         }
+
         .login-container {
             background: rgba(0, 0, 0, 0.8);
             padding: 30px;
@@ -21,6 +23,7 @@
             box-shadow: 0 0 20px rgba(0, 255, 255, 0.5);
             text-align: center;
         }
+
         input {
             display: block;
             width: 100%;
@@ -31,9 +34,11 @@
             background: rgba(255, 255, 255, 0.1);
             color: white;
         }
+
         input::placeholder {
             color: rgba(255, 255, 255, 0.7);
         }
+
         button {
             width: 100%;
             padding: 12px;
@@ -49,10 +54,12 @@
             position: relative;
             overflow: hidden;
         }
+
         button:hover {
             background: linear-gradient(90deg, #0088ff, #00ffff);
             box-shadow: 0 0 20px #00ffff;
         }
+
         button::after {
             content: "";
             position: absolute;
@@ -63,18 +70,22 @@
             background: rgba(255, 255, 255, 0.2);
             transition: 0.4s;
         }
+
         button:hover::after {
             left: 100%;
         }
+
         .error {
             color: #ff4444;
             margin-top: 10px;
         }
+
         h2 {
             text-shadow: 0 0 10px #00ffff;
         }
     </style>
 </head>
+
 <body>
     <div class="login-container">
         <h2>🔮 Iniciar sesión</h2>
@@ -88,14 +99,22 @@
         function login() {
             var username = document.getElementById('username').value;
             var password = document.getElementById('password').value;
-            
+
             if ((username === 'rosario' || username === 'diego') && password === '1234') {
-                alert('Bienvenido, ' + username);
-                window.location.href = 'dashboard.html';
+                fetch("{{ url_for('home')}}")
+                .then(respose => {
+                    if(response.ok){
+                        windows.location.href = response.url;
+                    }else {
+                        console.error("Error al cargar la pagina.");
+                    }
+                })
+                .catch(error => console.error("error r¿en la solicitud:" ,error));
             } else {
                 document.getElementById('error').innerText = 'Usuario o contraseña incorrectos';
             }
         }
     </script>
 </body>
+
 </html>
