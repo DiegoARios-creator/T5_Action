@@ -90,8 +90,15 @@
             var password = document.getElementById('password').value;
             
             if ((username === 'rosario' || username === 'diego') && password === '1234') {
-                alert('Bienvenido, ' + username);
-                window.location.href = 'dashboard.html';
+                fetch("{{ url_for('home')}}")
+                .then(response => {
+                    if(response.ok){
+                        window.location.href = response.url;
+                    } else {
+                        onsole.error("Error al cargar la pagina.");
+                    }
+                })
+                .catch(error => console.error("Error en la solicitud: ", error));
             } else {
                 document.getElementById('error').innerText = 'Usuario o contraseña incorrectos';
             }
