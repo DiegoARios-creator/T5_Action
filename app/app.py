@@ -12,6 +12,10 @@ app = Flask(__name__)
 @app.route('/') # ruta base para el menu de opciones
 def index():
     # return "Hola muando! - probando el servidor"
+    return render_template('login.html')
+
+@app.route('/home')
+def home():
     return render_template('index.html')
 
 @app.route('/traducir', methods=['GET', 'POST']) # ruta para la accion de Traducir texto

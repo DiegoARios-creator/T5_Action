@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login IA</title>
+</head>
+<body>
+    <div class="login-container">
+        <h2>🔮 Iniciar sesión</h2>
+        <input type="text" id="username" placeholder="Usuario">
+        <input type="password" id="password" placeholder="Contraseña">
+        <button onclick="login()">Ingresar</button>
+        <p id="error" class="error"></p>
+    </div>
+
+    <script>
+        function login() {
+            var username = document.getElementById('username').value;
+            var password = document.getElementById('password').value;
+            
+            if ((username === 'rosario' || username === 'diego') && password === '1234') {
+                fetch("{{ url_for('home')}}")
+                .then(response => {
+                    if(response.ok){
+                        window.location.href = response.url;
+                    } else {
+                        console.error("Error al cargar la pagina.");
+                    }
+                })
+                .catch(error => console.error("Error en la solicitud: ", error));
+            } else {
+                document.getElementById('error').innerText = 'Usuario o contraseña incorrectos';
+            }
+        }
+    </script>
+</body>
+</html>

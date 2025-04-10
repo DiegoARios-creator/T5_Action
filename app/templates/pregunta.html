@@ -22,7 +22,7 @@
 
     <script>
         document.getElementById('backHome').addEventListener('click', () => {
-            fetch("{{ url_for('index') }}")
+            fetch("{{ url_for('home') }}")
             .then(response => {
                 if (response.ok) {
                     window.location.href = response.url;
